@@ -26,7 +26,7 @@ class CodingExercises
   value and creating two sub-arrays that can then be sorted. So, to surmise, I
   would have sorted an array of integers using Ruby's powerful and fast built-
   in Array#sort. As you can see, I used arr.sort in my tests as a way of ensuring
-  huge arrays are sorted correctly.
+  huge arrays are sorted correctly. ^_^ <3
 =end
 
   def self.sort(arr)

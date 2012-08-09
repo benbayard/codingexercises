@@ -15,7 +15,7 @@ class CodingExercises
     arr.inject{ |a, b| a + b }.to_f / arr.count
   end
 
-  =begin
+=begin
   This type of sort is bad because it basically is running though the array
   once for each item in the array for each item in the array. While the best
   case scenario is that it can run through each item and only have to arrange
