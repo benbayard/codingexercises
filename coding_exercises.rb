@@ -1,33 +1,71 @@
+#!/usr/bin/env ruby
 class CodingExercises
   def initialize
     return true
   end
 
-  def self.rolling_average(arr)
-    #first we need to set up the array to be summed
-    #if the array is less than 3 we will just run
-    #the average of the whole array
-    #otherwise, we will return the averages of the
-    #last 3 (as in most recent)
-    arr = arr.reverse[0..2] if arr.count >= 3
-    #inject will add together the first 2 elements, return the sum
-    #then add that sum to the next element
-    arr.inject{ |a, b| a + b }.to_f / arr.count
+  def self.rolling_average_bad(arr, n=3)
+    #n is the number of times you want to calculate the
+    #rolling average for!
+    averages = []
+    #if the count is less than or equal to n
+    #just return the average of the array,
+    #as an array
+    return self.average(arr) if arr.count <= n
+    #otherwise!! put the last n elements in an arrays
+    final = arr.pop(n).reverse
+    #for each in final, add it to the original array
+    #then, calculate the new average
+    until final.empty? do
+      arr << final.pop
+      averages << self.average(arr)
+    end
+    averages
   end
 
-=begin
-  This type of sort is bad because it basically is running though the array
-  once for each item in the array for each item in the array. While the best
-  case scenario is that it can run through each item and only have to arrange
-  each item once thus making a 1 case scenario of only having to do one pass.
-  However, there are much more efficient ways to go about this. The generic
-  way is to use the Array#sort method in ruby. It uses a derivative of the
-  classic quicksort algorithm (I believe). This works by splitting around a
-  value and creating two sub-arrays that can then be sorted. So, to surmise, I
-  would have sorted an array of integers using Ruby's powerful and fast built-
-  in Array#sort. As you can see, I used arr.sort in my tests as a way of ensuring
-  huge arrays are sorted correctly. ^_^ <3
-=end
+  def self.rolling_average(arr, n=3)
+    #n is the number of times you want to calculate the
+    #rolling average for!
+    averages = []
+    #if the count is less than or equal to n
+    #just return the average of the array,
+    #as an array
+    return self.average(arr) if arr.count <= n
+    #otherwise!! put the last n elements in an arrays
+    final = arr.pop(n)
+    #calculate the sum! of the first most recent results
+    sum = self.sum(arr)
+    until final.empty?
+      arr.unshift final.shift
+      sum += arr[0]
+      averages << sum / (arr).count
+    end
+    averages
+  end
+
+  def self.speed_test
+    start = Time.now
+    10.times do |i|
+      self.sort([*1..1000].shuffle)
+    end
+    p Time.now-start
+
+    start = Time.now
+    10.times do |i|
+      [*1..440000].shuffle.sort()
+    end
+    p Time.now-start
+  end
+
+  def self.average(arr)
+    #inject will add together the first 2 elements, return the sum
+    #then add that sum to the next element
+    self.sum(arr) / arr.count
+  end
+
+  def self.sum(arr)
+    arr.inject{ |a, b| a + b }.to_f
+  end
 
   def self.sort(arr)
     validate_array arr

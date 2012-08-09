@@ -17,7 +17,12 @@ describe "Rolling Averages" do
 
   it "should return ONLY the last 3 results' average" do
     arr=[2,4,6,8]
-    CodingExercises.rolling_average(arr).should == 6
+    CodingExercises.rolling_average(arr).should == [3,4,5]
+  end
+
+  it "should return accurate results for a different n" do
+    arr=[1,2,3,4,5,6,7,8,9,10]
+    CodingExercises.rolling_average(arr,5).should == [3.5, 4, 4.5, 5, 5.5]
   end
 end
 

@@ -1,0 +1,56 @@
+Pretty simple readme but heregoes! I was asked to complete the first two
+Challenges and here is what I did"
+
+There is a class CodingExercises. This class has an init method that is blank.
+I included it just to be thorough.
+
+This class, CodingExercises has 2 class methods, one for each exercise I was
+asked to complete.
+
+The first exercise, "Rolling Averages" was one that I found really fun, because
+I majored in mathematics. I actually have a calculus book underneath my bed that
+I will occassionally read when I cannot sleep.
+
+Anyway, my original idea was to chop off the end of the array, then calculate
+average each time I added one of those back to the original array. This way was
+cool, but highly inefficient. For instance, it works well with small array,
+however, really poor for large arrays. With n=3 and arr.count=10000 it took about
+23.5 seconds to execute 10000 times. When you increased n to 8 the amount of time
+it takes to execute MORE THAN DOUBLED to 57 seconds. I knew there was a way to
+improve this, so I made a new function.
+
+The idea here was to increment the sum from the chopped off part of the array
+therefore I only have to iterate through the original array one time, and
+continually calculate the average! The performance increase I received was HUGE!
+In the original usecase of n=3, arr.count=10000 and 10000 iterations it was TWICE
+as fast at 9.9 seconds. If you set n=8, the time BARELY increased, to 9.91 seconds.
+This way the algorithm is much faster and much more practical. For fun, I set it
+to n=100 to check the times, they were as follows:
+11.4 seconds (new) vs. 686.6 seconds. Obviously, the new one scales much better.
+
+The second exercise was to use a recursive sorting algorithm to sort a list of
+integers. A fairly common and simple problem, I used the only one I knew off hand
+from my old C++ days and made it in ruby. I decided to spice it up by adding in
+some argument validation to make sure it only had integers in it, to show more tests
+and my general process. That way, we also aren't sorting strings vs. integers.
+
+This type of sort is bad because it basically is running though the array
+once for each item in the array for each item in the array. While the best
+case scenario is that it can run through each item and only have to arrange
+each item once thus making a 1 case scenario of only having to do one pass.
+However, there are much more efficient ways to go about this. The generic
+way is to use the Array#sort method in ruby. It uses a derivative of the
+classic quicksort algorithm (I believe). This works by splitting around a
+value and creating two sub-arrays that can then be sorted. So, to surmise, I
+would have sorted an array of integers using Ruby's powerful and fast built-
+in Array#sort. As you can see, I used arr.sort in my tests as a way of ensuring
+huge arrays are sorted correctly.
+
+The time it took to execute a 1000 deep array 100 times was:
+1.4s vs. .002s (Obvious difference!) For fun, I tested HOW MUCH larger the array
+would need to be for ruby to catch up to me. I had to iterate 445,000 times for them
+to be equal. YIKES.
+
+I also wrote a small little algorithm to test the speed of each method. It was hard
+coded and does very little. Just takes the times before and after something executes.
+Nothing too fancy ^_^
