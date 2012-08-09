@@ -30,9 +30,13 @@ describe "Sort" do
     CodingExercises.sort([*0..5]).should be_an_instance_of Array
   end
 
+  it "should sort small arrays" do
+    arr = [3,2,4,5,1]
+    CodingExercises.sort(arr).should == [1,2,3,4,5]
+  end
+
   it "should sort an array of many values" do
     arr = [*0..50].shuffle
-
     CodingExercises.sort(arr).should == arr.sort
   end
   #because I felt that was all that was really necessary for testing

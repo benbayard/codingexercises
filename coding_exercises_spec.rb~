@@ -29,19 +29,22 @@ describe "Sort" do
   it "should return an array" do
     CodingExercises.sort([*0..5]).should be_an_instance_of Array
   end
+  it "should sort small arrays" do
+    arr = [3,2,4,5,1]
+    CodingExercises.sort(arr).should == [1,2,3,4,5]
+  end
 
   it "should sort an array of many values" do
     arr = [*0..50].shuffle
-
     CodingExercises.sort(arr).should == arr.sort
   end
   #because I felt that was all that was really necessary for testing
   #I added a little 'extra credit' to check and ensure that the
   #Array was full of integers!
 
-  it "should return an ArgumentError, if the array contains something that is not an int" do
+  it "should return an StandardError, if the array contains something that is not an int" do
     arr = ["I", "Love", "Coding"]
-    expect {CodingExcercises.sort(arr)}.should raise_error
+    expect {CodingExcercises.sort(arr)}.should raise_error(StandardError)
   end
 
 end

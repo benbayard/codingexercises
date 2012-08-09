@@ -15,6 +15,20 @@ class CodingExercises
     arr.inject{ |a, b| a + b }.to_f / arr.count
   end
 
+=begin
+  This type of sort is bad because it basically is running though the array
+  once for each item in the array for each item in the array. While the best
+  case scenario is that it can run through each item and only have to arrange
+  each item once thus making a 1 case scenario of only having to do one pass.
+  However, there are much more efficient ways to go about this. The generic
+  way is to use the Array#sort method in ruby. It uses a derivative of the
+  classic quicksort algorithm (I believe). This works by splitting around a
+  value and creating two sub-arrays that can then be sorted. So, to surmise, I
+  would have sorted an array of integers using Ruby's powerful and fast built-
+  in Array#sort. As you can see, I used arr.sort in my tests as a way of ensuring
+  huge arrays are sorted correctly.
+=end
+
   def self.sort(arr)
     validate_array arr
     #since we are doing this recursively
@@ -32,9 +46,9 @@ class CodingExercises
           #it sets sorted to true to state that a
           #sort DID happen this go, so it needs to move on
           sorted = true
+          #and then we loop through it all again!
         end
       end
-
       break unless sorted
     end
     arr
